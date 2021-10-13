@@ -5,3 +5,8 @@ include_directories (${Boost_INCLUDE_DIRS})
 add_executable (unit_tests main.test.cpp basic.test.cpp operatorSimple.test.cpp ../upDate.cpp)
 
 target_link_libraries (unit_tests ${Boost_LIBRARIES})
+
+add_test(
+    NAME all_tests
+    COMMAND $<TARGET_FILE:unit_tests> --log_level=all
+)
