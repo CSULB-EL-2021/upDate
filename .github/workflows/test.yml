@@ -35,8 +35,7 @@ jobs:
           fi
       - name: Build
         run: |
-          cmake --build build --config "$BUILD_TYPE"
+          mkdir build && cd build && cmake ../ && make
       - name: Test
         run: |
-          cd build
-          ctest -C "$BUILD_TYPE" --output-on-failure --verbose
+          ./tests/unit_tests
