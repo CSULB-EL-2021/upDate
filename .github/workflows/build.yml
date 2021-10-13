@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
       - name: Checkout
         uses: actions/checkout@v2.0.0
@@ -22,6 +22,7 @@ jobs:
           fi
           vcpkg integrate install
       - name: Configure
+        shell: bash
         run: |
           if [ "${{ matrix.os }}" == "windows-latest" ]; then
              cmake -S. -Bbuild -DCMAKE_TOOLCHAIN_FILE="C:/vcpkg/scripts/buildsystems/vcpkg.cmake" -Ax64
