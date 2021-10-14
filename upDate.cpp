@@ -197,6 +197,22 @@ int upDate::GetDateCount()
     return _counter;
 }
 
+bool upDate::operator==(const upDate& obj) const
+{
+    return this->julian() == obj.julian();
+}
+
+
+bool upDate::operator<(const upDate& obj) const
+{
+    return this->julian() < obj.julian();
+}
+
+bool upDate::operator>(const upDate& obj) const
+{
+    return this->julian() > obj.julian();
+}
+
 
 
 

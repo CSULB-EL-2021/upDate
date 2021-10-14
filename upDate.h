@@ -43,8 +43,11 @@ class upDate {
         friend ostream& operator <<(ostream& out, upDate &obj);
 
         static int GetDateCount();
-
         int julian() const;
+
+        bool operator ==(const upDate& obj) const;
+        bool operator <(const upDate& obj) const;
+        bool operator >(const upDate& obj) const;
 
     private:
         int *_data;
