@@ -23,7 +23,7 @@ int main()
     std::cout << "------" << std::endl;
 
     // tmp3 = 2 + tmp2 ;
-    tmp3 = tmp2 + 2;
+    tmp3 = 2 + tmp2;
     display(tmp1);
     display(tmp2);
     display(tmp3);

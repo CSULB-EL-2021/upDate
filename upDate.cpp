@@ -114,7 +114,7 @@ void upDate::julian2Greg(int JD, int &month, int &day, int &year) {
     day = K;
 }
 
-upDate &upDate::operator=(const upDate& obj)
+upDate upDate::operator=(upDate obj)
 {
     _data = new int[3];
     _data[0] = obj._data[0];
@@ -123,62 +123,73 @@ upDate &upDate::operator=(const upDate& obj)
 
     return *this;
 }
-upDate &upDate::operator+=(int x)
+upDate upDate::operator+=(int x)
 {
     this->addDay(x);
     return *this;
 }
-upDate &upDate::operator-=(int x)
+upDate upDate::operator-=(int x)
 {
     this->removeDay(x);
     return *this;
 }
-upDate &upDate::operator+(int x)
+upDate upDate::operator+(int x)
 {
     this->addDay(x);
     return *this;
 }
-upDate &upDate::operator-(int x)
+upDate upDate::operator-(int x)
 {
     this->removeDay(x);
     return *this;
 }
 
-upDate &upDate::operator++(int x)
+upDate upDate::operator++(int x)
+{
+    (void) x;
+    this->addDay(1);
+    return *this;
+}
+upDate upDate::operator++()
 {
     this->addDay(1);
     return *this;
 }
-upDate &upDate::operator++()
+upDate upDate::operator--(int x)
 {
-    this->addDay(1);
-    return *this;
-}
-upDate &upDate::operator--(int x)
-{
+    (void) x;
     this->removeDay(1);
     return *this;
 }
-upDate &upDate::operator--()
+upDate upDate::operator--()
 {
     this->removeDay(1);
     return *this;
 }
 
-upDate operator+(int x, const upDate& obj)
+upDate operator+(int x, upDate obj)
 {
     upDate tmp(obj);
     return tmp + x;
 }
-upDate operator-(int x, const upDate &obj)
+upDate operator-(int x, upDate obj)
 {
     upDate tmp(obj);
     return tmp - x;
 }
-ostream &operator<<(ostream &os, upDate &obj)
+ostream &operator<<(ostream &os, upDate obj)
 {
     os << obj.getMonth() << "/" << obj.getDay() << "/" << obj.getYear();
     return os;
+}
+
+int upDate::operator -(upDate obj)
+{
+    int jd1 = this->julian();
+    int jd2 = obj.julian();
+    int num = jd1 - jd2;
+
+    return num;
 }
 
 void upDate::addDay(int x)
@@ -197,18 +208,17 @@ int upDate::GetDateCount()
     return _counter;
 }
 
-bool upDate::operator==(const upDate& obj) const
+bool upDate::operator==(const upDate obj) const
 {
     return this->julian() == obj.julian();
 }
 
-
-bool upDate::operator<(const upDate& obj) const
+bool upDate::operator<(const upDate obj) const
 {
     return this->julian() < obj.julian();
 }
 
-bool upDate::operator>(const upDate& obj) const
+bool upDate::operator>(const upDate obj) const
 {
     return this->julian() > obj.julian();
 }

@@ -27,27 +27,29 @@ class upDate {
         int getYear() const;
         string getMonthName() const;
 
-        upDate& operator =(const upDate& obj);
-        upDate& operator +=(int x);
-        upDate& operator -=(int x);
-        upDate& operator +(int x);
-        upDate& operator -(int x);
+        upDate operator =(upDate obj);
+        upDate operator +=(int x);
+        upDate operator -=(int x);
+        upDate operator +(int x);
+        upDate operator -(int x);
 
-        upDate& operator ++();
-        upDate& operator ++(int x);
-        upDate& operator --();
-        upDate& operator --(int x);
+        friend upDate operator +(int x, upDate obj);
+        friend upDate operator -(int x, upDate obj);
 
-        friend upDate operator +(int x, const upDate& obj);
-        friend upDate operator -(int x, const upDate& obj);
-        friend ostream& operator <<(ostream& out, upDate &obj);
+        int operator -(upDate obj);
+        upDate operator ++();
+        upDate operator ++(int x);
+        upDate operator --();
+        upDate operator --(int x);
+
+        friend ostream& operator <<(ostream& out, upDate obj);
 
         static int GetDateCount();
         int julian() const;
 
-        bool operator ==(const upDate& obj) const;
-        bool operator <(const upDate& obj) const;
-        bool operator >(const upDate& obj) const;
+        bool operator ==(const upDate obj) const;
+        bool operator <(const upDate obj) const;
+        bool operator >(const upDate obj) const;
 
     private:
         int *_data;
